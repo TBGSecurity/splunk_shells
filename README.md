@@ -45,4 +45,4 @@ SHELLTYPE - Specify std or msf (std = Standard Shell|msf = Meterpreter Shell)
 
 ATTACKERIP - Specify the IP that you want to shell to be sent back to. 
 
-tedATTACKERPORT - Specify the port you want the shell to be sent back to.
+ATTACKERPORT - Specify the port you want the shell to be sent back to.
