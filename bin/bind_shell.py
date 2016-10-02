@@ -11,6 +11,7 @@
 #**************************************************************************#
 
 
+import sys
 import socket
 import os
 import thread
@@ -53,7 +54,10 @@ while True:
             s = socket.socket()
             s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-            s.bind(('', 8888))
+            try:
+                s.bind(('', int(sys.argv[1])))
+            except IndexError:
+                s.bind(('', 8888))
             s.listen(5)
 
             while True:
