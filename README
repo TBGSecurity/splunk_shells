@@ -5,5 +5,6 @@ TBG Security
 Ryan Hays
 
 This app is to help with penetration testing and REd Teaming within environments that have a Splunk deployment.
+
 This app will allow the engineer to spawn a Reverse of Bind Shell from a Splunk server to allow the engineer to
-enteract with the server and expand influence within the environment. 
+interact with the server and expand influence within the environment.
