@@ -24,6 +24,7 @@ Once it is installed you will have to restart Splunk
 
 ![Alt text](appserver/static/splunk_restart.png?raw=true "Optional Title")
 
-Once splunk is restarted click on Permissions for the splunk_shells app. Ensure the last permission "Sharing for config file-only objects" has "all apps" selected.
+For Splunk v6.5 ONLY
+Once Splunk is restarted click on Permissions for the splunk_shells app. Ensure the last permission "Sharing for config file-only objects" has "all apps" selected.
 
 ![Alt text](appserver/static/splunk_permissions.png?raw=true "Optional Title")
