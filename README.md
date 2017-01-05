@@ -1,5 +1,5 @@
 Splunk Shells App
-Version 1.1
+Version 1.2
 
 TBG Security
 Ryan Hays
