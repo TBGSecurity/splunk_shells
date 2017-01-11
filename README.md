@@ -10,7 +10,7 @@ This app will allow the engineer to spawn a Reverse of Bind Shell from a Splunk 
 interact with the server and expand influence within the environment.
 
 # Install
-Download the release from https://github.com/MrJester/splunk_shells/releases/download/1.0/splunk_shells.tar.gz
+Download the release from https://github.com/TBGSecurity/splunk_shells/archive/1.2.tar.gz
 
 Navigate to the "Manage Apps" and click on "Install app from file"
 
